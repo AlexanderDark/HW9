@@ -37,12 +37,11 @@ pipeline {
                 always {
                   script {
                     if (currentBuild.currentResult == 'SUCCESS') {
-                    step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: "dara@gkomega.ru", sendToIndividuals: true])
+                    step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: "alexanderdark@gmail.com", sendToIndividuals: true])
                     } else {
-                    step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: "dara@gkomega.ru", sendToIndividuals: true])
+                    step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: "alexanderdark@gmail.com", sendToIndividuals: true])
                     }
 
-                    emailext body: readFile("target/surefire-reports/emailable-report.html"), mimeType: 'text/html', subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) from '${GIT_URL}/${GIT_BRANCH}' ended with ${currentBuild.currentResult}", to: "${EMAIL_NOTIFICATION}"
                     // Формирование отчета
                     allure([
                       includeProperties: false,
