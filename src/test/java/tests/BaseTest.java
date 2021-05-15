@@ -30,6 +30,7 @@ public class BaseTest {
 
         //String name = System.getProperty("browser").trim().toLowerCase();
         String name = Optional.ofNullable(System.getProperty("browser")).orElse("chrome");
+        String slenoidURL = "http://172.20.10.7:4444/wd/hub"; //111.11.11.11 - your IP adress
 
         WebDriverType browserName = WebDriverType.findByName(name);
         driver = WebDriverFactory.createDriver(browserName);
