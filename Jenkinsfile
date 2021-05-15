@@ -65,6 +65,12 @@ pipeline {
                     println("message= " + message)
                     slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
                     slackSend (color: '#00FF00', message: "message= " + message)
+                    emailext (
+                          subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                          body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+                            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+                          recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                        )
                   }
                 }
             }
