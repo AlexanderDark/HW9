@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage('Pull from GitHub') {
             steps {
-                slackSend (color: '#FFFF00', message: "СТАРТ: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                slackSend (color: '#FFFF00', message: "START: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
                 git ([
                     url: "${params.GIT_URL}",
                     branch: "${params.GIT_BRANCH}"
